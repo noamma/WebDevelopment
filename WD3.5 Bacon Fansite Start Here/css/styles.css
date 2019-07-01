@@ -1,0 +1,29 @@
+/**************************************TAG SELECTORS*********************/
+
+body{
+background-color: aqua;
+text-align: center;
+}
+
+h1{
+  color: #4169e1;
+  text-shadow: 0.1em 0.1em 0.15em;
+}
+/*
+img {
+  background-color: red;
+}
+*/
+p{
+font-weight: bold;
+font-size: 25px
+}
+/***********************************CLASS SELECTORS**********************/
+
+.bacon {
+  background-color: green;
+}
+
+.broccoli {
+  background-color: red;
+}

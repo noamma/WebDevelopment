@@ -1,0 +1,13 @@
+body {
+  background-color: cyan;
+}
+hr {
+  border: none;
+  border-top: 5px dotted grey;
+  width: 5%;
+}
+
+h1,h3 {
+  color: #4169e1;
+  text-shadow: 0.1em 0.1em 0.15em;
+}
