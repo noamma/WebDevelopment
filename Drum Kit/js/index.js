@@ -26,12 +26,21 @@ function getDrumPath(param){
   if(path.length>0){
       return path;
   }
-
 }
+
+function activatedDrum(_prm){
+  var drum = document.querySelector("."+_prm);
+  drum.classList.toggle("pressed");
+  playDrumSound(_prm);
+  setTimeout(function(){
+    console.log("timeout triggred...");
+    drum.classList.toggle("pressed");},250);
+}
+
 function handleClick(){
     var param = this.innerHTML;//alert("i got clicked!");
     console.log("clicked button:  - " + param);
-    playDrumSound(param);
+    activatedDrum(param);
 }
 
 function playDrumSound(_param){
@@ -40,4 +49,4 @@ function playDrumSound(_param){
   drumSound.play();
 }
 
-addEventListener("keydown", function(e){console.log("Keystroke detected: " + e.key);playDrumSound(e.key)});
+addEventListener("keydown", function(e){console.log("Keystroke detected: " + e.key);activatedDrum(e.key)});
