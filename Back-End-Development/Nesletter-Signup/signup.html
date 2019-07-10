@@ -29,16 +29,15 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="styles.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
   </head>
   <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" action="/" method="post">
   <img class="mb-4" src="images/logo.jpg" alt="" width="72" height="72">
   <h1 class="h3 mb-3 font-weight-normal">Signup to my Newsletter</h1>
-  <input type="text" class="form-control top" placeholder="First name" required autofocus>
-  <input type="text" class="form-control middle" placeholder="Last name" required>
-  <input type="email" class="form-control bottom" placeholder="Email address" required>
-
+  <input type="text" class="form-control top" name="firstname" placeholder="First name" required autofocus>
+  <input type="text" class="form-control middle" name="lastname" placeholder="Last name" required>
+  <input type="email" class="form-control bottom" name="email" placeholder="Email address" required>
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign me up!</button>
 </form>
 </body>
