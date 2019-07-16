@@ -1,0 +1,13 @@
+<%- include('partials/header'); -%>
+<% if(post){ %>
+  <div class="container-fluid">
+    <h1> <%= post.title %> </h1>
+    <p> <%= post.content %> </p>
+  </div>
+<% }else{ %>
+  <div class="container">
+    <h1>Oh no!!</h1>
+    <p>No post fount 😔</p>
+  </div>
+<% } %>
+<%- include('partials/footer'); -%>
