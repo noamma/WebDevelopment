@@ -1,6 +1,15 @@
 <% posts.forEach(function(post){ %>
-  <div class="">
-    <h2> <%=post.title %> </h2>
-    <p> <%= post.content %> </p>   
-  </div>
+
+  <% if (post.content.length>100){ %>
+    <% let trackedPost = post.content.slice(0, 100); %>
+    <div class="container-fluid">
+      <h1> <%= post.title %> </h1>
+      <p> <%= trackedPost %> <span><a href="/posts/<%= post.title %>" >Read More...</a></span></p>
+    </div>
+  <% } else{ %>
+    <div class="container-fluid">
+      <h1> <%= post.title %> </h1>
+      <p> <%= post.content %> </p>
+    </div>
+  <% } %>
 <% }); %>
