@@ -1,0 +1,12 @@
+body{
+  background-color: #d3f6f3;
+    }
+h1{
+  color: #000;
+  }
+.container{
+  z-index: 1;
+  border-radius: 10%;
+  border: 2px solid;
+  text-align: center;
+  }
