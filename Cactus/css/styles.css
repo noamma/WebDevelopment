@@ -1,0 +1,78 @@
+
+body{ margin: 0px 0px 0px 0px; direction: rtl; font-family:Arial, Helvetica, sans-serif; font-size: 13px; background:URL(images/bg.jpg) repeat;}
+input,textarea{ font-family:Arial, Helvetica, sans-serif;}
+.header{ background:URL(images/header.jpg) top center no-repeat; height:241px;}
+.content
+{			
+	padding:5px 10px 100px 10px;	
+	background:URL(images/footer.jpg) bottom no-repeat #e4e8eb;
+	height:400px;
+	color:#223955;
+}
+td{ vertical-align:top;}
+img{ border:0px;}
+
+.menu{ text-align:center; background:URL(images/menuBg.jpg) repeat-x; width:783px;}		
+.menu,.menu a{color:#FFFFFF;font-size:13px;font-weight:bold;line-height:23px;text-decoration:none;}		
+.menu a:hover{color:#EFAA03;}
+.menu .selected{color:#FFC926;cursor: default;}	
+
+form{ margin:0px 0px 0px 0px; padding:0px 0px 0px 0px;}
+.contact{ float:left; background:URL(images/contact.jpg) no-repeat; width:222px; margin-right:10px;}
+.contact input,.contact textarea{ border:0px; background-color:transparent; color:#FFF;}
+.contact .send{ background:URL(images/send.png) no-repeat; width:55px; height:21px; margin-right:40px; margin-top:5px;}
+
+.credit,.credit a{text-align:center; color:#FFF; font-weight:bold; text-decoration:none;}
+
+.submenu{ position: absolute;  background-color: #593416; display: none; z-index:999;}
+.submenu div a{ color: #fcf0d0; text-decoration: none; font-weight: bold; padding: 0px 5px 0px 5px; }
+.subemenu a:hover{ text-decoration: underline; }
+.submenu div:hover{ background-color: #f1ebdc; }
+.submenu div:hover a{ color: #000; }
+.submenu div{  border-bottom: 1px solid #593416; padding: 0px 0px 2px 0px; text-align:right; width:180px;}	
+
+.title{ font-size:16px; font-weight:bold; text-decoration:underline;}	
+
+.foodTitle{ color:#223955;}
+
+.controls{ vertical-align:middle;}
+.gallery img{ border:0px;}
+.gallery a{ color:#000; text-decoration:none;}
+.gallery a:hover{ text-decoration:underline;}
+#pictures{ width:546px; height:120px; overflow:hidden;}
+#pictures img{ border:2px #FFF solid; cursor:pointer; margin-bottom:2px;}	
+		
+/* lightBox */
+#lightbox{	position: absolute;	left: 0; width: 100%; z-index: 100; text-align: center; line-height: 0;}
+#lightbox img{ width: auto; height: auto;}
+#lightbox a img{ border: none; }
+
+#outerImageContainer{ position: relative; background-color: #fff; width: 250px; height: 250px; margin: 0 auto; }
+#imageContainer{ padding: 10px; }
+
+#loading{ position: absolute; top: 40%; left: 0%; height: 25%; width: 100%; text-align: center; line-height: 0; }
+#hoverNav{ position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: 10; }
+#imageContainer
+#hoverNav{ left: 0;}
+#hoverNav a{ outline: none;}
+
+#prevLink, #nextLink{ width: 49%; height: 100%; background-image: url(data:image/gif;base64,AAAA); /* Trick IE into showing hover */ display: block; }
+#prevLink { left: 0; float: left;}
+#nextLink { right: 0; float: right;}
+#prevLink:hover, #prevLink:visited:hover { background: url(images/prevlabel.gif) left 15% no-repeat; }
+#nextLink:hover, #nextLink:visited:hover { background: url(images/nextlabel.gif) right 15% no-repeat; }
+
+#imageDataContainer{ font: 10px Verdana, Helvetica, sans-serif; background-color: #fff; margin: 0 auto; line-height: 1.4em; overflow: auto; width: 100%	; }
+
+#imageData{	padding:0 10px; color: #666; }
+#imageData #imageDetails{ width: 70%; float: left; text-align: left; }	
+#imageData #caption{ font-weight: bold;	}
+#imageData #numberDisplay{ display: block; clear: left; padding-bottom: 1.0em;	}			
+#imageData #bottomNavClose{ width: 66px; float: left;  padding-bottom: 0.7em; outline: none;}	 	
+
+#overlay{ position: absolute; top: 0; left: 0; z-index: 90; width: 100%; height: 500px; background-color: #000; }
+
+.facebook{position: absolute; top: 20px; right:0px; color: #fff; font-weight: bold; font-size: 16px; text-align: center; text-decoration: none; width: 145px; overflow: hidden; display: block; direction: ltr;}
+
+
+.cycle-slideshow{height:233px;overflow:hidden;}
