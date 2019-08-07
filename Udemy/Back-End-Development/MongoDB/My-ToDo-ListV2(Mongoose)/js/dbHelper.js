@@ -1,9 +1,31 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/todolistDB",{
-  useNewUrlParser: true,
-  useFindAndModify: false});
+exports.connect = function(){
+  mongoose.connect("mongodb://localhost:27017/todolistDB",{
+    useNewUrlParser: true,
+    useFindAndModify: false});
+}
 
+exports.newList = function(_list){
+  let list = new List(
+    {
+      name: _list,
+      items: defaultItems
+    }
+  );
+  list.save();
+  return list;
+}
+
+exports.removeListItem = function(listName, itemId){
+  List.findOneAndUpdate({name: listName}, {$pull: {items: {_id: itemId}}}, function(err){
+    if (err){
+      console.log(err);
+    }else{
+      console.log("Successfuly removed item id: " + itemId);
+    }
+  });
+};
 const itemsSchema = {
   name: {
     type: String,
@@ -19,9 +41,13 @@ const listSchema = {
   items: [itemsSchema]
 };
 
-exports.List = mongoose.model("List", listSchema);
+const List = mongoose.model("List", listSchema);
 
-exports.Item = mongoose.model("Item", itemsSchema);
+const Item = mongoose.model("Item", itemsSchema);
+
+exports.List = List;
+
+exports.Item = Item;;
 
 const item1 = new Item({
   name: "Example item 1"
@@ -35,7 +61,8 @@ const item3 = new Item({
   name: "Example item 3"
 });
 
-exports.defaultItems = [item1, item2, item3];
+const defaultItems = [item1, item2, item3];
+
 /*
 Item.find(function(err, items){
   if(err){

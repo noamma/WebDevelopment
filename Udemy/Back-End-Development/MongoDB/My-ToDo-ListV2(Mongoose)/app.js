@@ -11,11 +11,15 @@ app.use(express.static('public'));
  //let listName = "";
 
 app.get("/", function(req, res){
-  res.render('list',{listObj: list.getList("default")});
+  let listDoc = list.getList("Today");
+  //console.log(listDoc);
+  setTimeout(function(){res.render('list',{listObj: listDoc});}, 1000);
+  //res.redirect("/");
 });
 
 app.get("/lists/:listname", function(req, res){
-  res.render('list',{listObj: list.getList("default")});
+let _list = list.getList(req.params.listname);
+  setTimeout(function(){res.render('list',{listObj: _list});}, 1000);
 });
 
 app.post("/", function(req, res){
@@ -26,22 +30,21 @@ app.post("/", function(req, res){
     res.redirect("/");
   }else {
     listName = req.body.listname;
-    res.redirect("/" + listName);
+    setTimeout(function(){res.redirect("/lists/"+req.params.listname)}, 500);
   }
 });
 
 app.post("/delete", function(req, res){
   if(req.body && req.body.checkedItem.length > 0){
     const removedItemId = req.body.checkedItem;
-    Item.findByIdAndRemove(removedItemId, function(err){
-      if (err){
-        console.log(err);
-      }else{
-        console.log("Successfuly removed item id: " + removedItemId);
-      }
-    });
+    const listName = req.body.listName;
+    console.log("Item id: " + removedItemId);
+    console.log("was marked for deletion");
+    console.log("Originated from list: " + listName);
+    list.deleteItem(listName, removedItemId);
+    setTimeout(function(){res.redirect("/lists/"+req.params.listname)}, 500);
   }
-  res.redirect("/");
+
 });
 
 
