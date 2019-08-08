@@ -17,12 +17,17 @@ exports.newList = function(_list){
   return list;
 }
 
-exports.removeListItem = function(listName, itemId){
-  List.findOneAndUpdate({name: listName}, {$pull: {items: {_id: itemId}}}, function(err){
+exports.removeListItem = function(listName, itemId, _callback){
+  List.findOneAndUpdate({name: listName}, {$pull: {items: {_id: itemId}}}, function(err, foundList){
     if (err){
       console.log(err);
     }else{
-      console.log("Successfuly removed item id: " + itemId);
+      if(foundList && foundList.name.length >0){
+        console.log("Successfuly removed item id: " + itemId);
+        console.log("from list: " + foundList.name);
+        console.log("counting 5 sec\' before triggring callback");
+        setTimeout(function(){_callback(foundList.name);}, 5000);
+      }
     }
   });
 };

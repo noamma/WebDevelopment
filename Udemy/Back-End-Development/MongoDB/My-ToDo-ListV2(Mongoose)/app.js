@@ -3,7 +3,9 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 //const dbhelper = require(__dirname + "/js/dbHelper.js");
 const list = require(__dirname + "/js/list.js");
+const _ = require("lodash");
 const app = express();
+let liststring;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
@@ -11,15 +13,16 @@ app.use(express.static('public'));
  //let listName = "";
 
 app.get("/", function(req, res){
-  let listDoc = list.getList("Today");
-  //console.log(listDoc);
-  setTimeout(function(){res.render('list',{listObj: listDoc});}, 1000);
-  //res.redirect("/");
+  list.getList("Today", function(_listDoc){
+    console.log("render was triggerd");
+    res.render('list',{listObj: _listDoc})});
 });
 
 app.get("/lists/:listname", function(req, res){
-let _list = list.getList(req.params.listname);
-  setTimeout(function(){res.render('list',{listObj: _list});}, 1000);
+liststring = _.capitalize(req.params.listname);
+list.getList(liststring, function(_list){
+  res.render('list',{listObj: _list});
+});
 });
 
 app.post("/", function(req, res){
@@ -30,7 +33,9 @@ app.post("/", function(req, res){
     res.redirect("/");
   }else {
     listName = req.body.listname;
-    setTimeout(function(){res.redirect("/lists/"+req.params.listname)}, 500);
+    setTimeout(function(){
+      res.redirect("/lists/"+req.params.listname)
+    }, 500);
   }
 });
 
@@ -41,10 +46,16 @@ app.post("/delete", function(req, res){
     console.log("Item id: " + removedItemId);
     console.log("was marked for deletion");
     console.log("Originated from list: " + listName);
-    list.deleteItem(listName, removedItemId);
-    setTimeout(function(){res.redirect("/lists/"+req.params.listname)}, 500);
+    list.deleteItem(listName, removedItemId, function(_listname){
+      if(_listname === "Today"){
+        res.redirect("/");
+      }else{
+          console.log("getting back from callback after 5 sec delay..");
+          console.log("triggring redirect...");
+          res.redirect("/lists/"+_listname);
+      }
+    });
   }
-
 });
 
 
