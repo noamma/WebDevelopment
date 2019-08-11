@@ -1,6 +1,7 @@
 //jshint esversion:6
-
+const {default: expressKerberos} = require ("express-kerberos");
 const express = require("express");
+
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
@@ -17,8 +18,9 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-app.get("/", function(req, res){
-  res.render('home', {startingParagraph: homeStartingContent, posts: posts});
+app.get("/", expressKerberos(), function(req, res){
+  console.log(req.auth.username);
+  //res.render('home', {startingParagraph: homeStartingContent, posts: posts});
 });
 
 app.get("/about", function(req, res){
@@ -51,15 +53,6 @@ app.post("/", function(req, res){
   posts.push({title: req.body.postTitle, content: req.body.postContent});
   res.redirect("/");
 });
-
-
-
-
-
-
-
-
-
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
