@@ -25,8 +25,24 @@ exports.removeListItem = function(listName, itemId, _callback){
       if(foundList && foundList.name.length >0){
         console.log("Successfuly removed item id: " + itemId);
         console.log("from list: " + foundList.name);
-        console.log("counting 5 sec\' before triggring callback");
-        setTimeout(function(){_callback(foundList.name);}, 5000);
+        // console.log("counting 5 sec\' before triggring callback");
+        // setTimeout(function(){_callback(foundList.name);}, 5000);
+        _callback(foundList.name);
+      }
+    }
+  });
+};
+
+exports.addListItem = function(listName, itemName, _callback){
+  List.findOne({name: listName}, (err, foundList)=>{
+    if(err){
+      console.log(err);
+    }else{
+      if(foundList && foundList.name.length>0){
+        item = new Item({name: itemName});
+        foundList.items.push(item);
+        foundList.save();
+        _callback();
       }
     }
   });

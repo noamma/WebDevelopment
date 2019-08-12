@@ -26,17 +26,19 @@ list.getList(liststring, function(_list){
 });
 
 app.post("/", function(req, res){
-  console.log(req.body.listname);
-  if (req.body.listname === "Today"){
-    const item = new Item({name: req.body.item});
-    item.save();
-    res.redirect("/");
-  }else {
-    listName = req.body.listname;
-    setTimeout(function(){
-      res.redirect("/lists/"+req.params.listname)
-    }, 500);
-  }
+  listName = req.body.listname;
+  itemName = req.body.item;
+  console.log("POST request recieved from list: " + listName);
+  console.log("to push new item: " + itemName + " to the list");
+  list.addItem(listName,itemName,()=>{
+    if (listName === "Today"){
+      // const item = new Item({name: req.body.item});
+      // item.save();
+      res.redirect("/");
+    }else {
+      res.redirect("/lists/"+listName);
+    }
+  });
 });
 
 app.post("/delete", function(req, res){
@@ -50,7 +52,7 @@ app.post("/delete", function(req, res){
       if(_listname === "Today"){
         res.redirect("/");
       }else{
-          console.log("getting back from callback after 5 sec delay..");
+          //console.log("getting back from callback after 5 sec delay..");
           console.log("triggring redirect...");
           res.redirect("/lists/"+_listname);
       }

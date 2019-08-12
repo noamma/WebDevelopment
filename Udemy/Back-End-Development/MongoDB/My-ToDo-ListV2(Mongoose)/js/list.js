@@ -9,7 +9,8 @@ exports.getList = function(_list, _callback){
       if (list && list.name.length>0){
         console.log("found list: " + list.name);
         listDoc = list;
-        //console.log("Successfuly retrieved list: " + listDoc);
+        console.log("Successfuly retrieved list: " + listDoc.name);
+        _callback(listDoc);
         //return list;
       }else{
         console.log("Creating list...");
@@ -17,11 +18,12 @@ exports.getList = function(_list, _callback){
         console.log("Successfuly created list: " + listDoc.name);
         _callback(listDoc);
       }
+
       }
   });
-    console.log("New / Updated list loaded:");
-    console.log(listDoc);
-    _callback(listDoc);
+  // console.log("New / Updated list loaded:");
+  // console.log(listDoc);
+  // _callback(listDoc);
   };
 
 exports.deleteItem = function(listName, itemId, _callback){
@@ -29,6 +31,12 @@ exports.deleteItem = function(listName, itemId, _callback){
     _callback(_list);
     });
 }
+
+exports.addItem = function(listName, itemName,_callback){
+  dbhelper.addListItem(listName, itemName, function(_list){
+    _callback(_list);
+  });
+};
 //res.render('list', {listTitle: result.name, items: result.items});
 /*
 const list = new List({
