@@ -1,4 +1,4 @@
 **/node_modules/**
 .DS_Store/**
-dbcs.js/**
-apikey.js/**
+**/dbcs.js
+**/apikey.js
