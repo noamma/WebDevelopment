@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
-
+const dbcs = require(__dirname + "/dbcs.js");
+const connectionstring = dbcs.getConnectionString();
 exports.connect = function(){
-  mongoose.connect("mongodb://localhost:27017/todolistDB",{
+  //console.log(connectionstring);
+  mongoose.connect(connectionstring,{
     useNewUrlParser: true,
     useFindAndModify: false});
 }
