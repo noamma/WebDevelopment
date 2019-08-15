@@ -7,6 +7,13 @@ exports.getArticles = (_callback)=>{
       _callback(articles);
   });
 };
+
+exports.deleteArticles = (_callback)=>{
+  dbhelper.deleteAllArticles((result)=>{
+      _callback(result);
+  });
+};
+
 exports.getList = function(_list, _callback){
   dbhelper.List.findOne({name: _list}, function(err, list){
     if (err){
@@ -38,9 +45,9 @@ exports.deleteItem = function(listName, itemId, _callback){
     });
 }
 
-exports.addItem = function(listName, itemName,_callback){
-  dbhelper.addListItem(listName, itemName, function(_list){
-    _callback(_list);
+exports.addArticle = function(articleTitle, articleContent,_callback){
+  dbhelper.addNewArticle(articleTitle, articleContent, (_article)=>{
+    _callback(_article);
   });
 };
 //res.render('list', {listTitle: result.name, items: result.items});

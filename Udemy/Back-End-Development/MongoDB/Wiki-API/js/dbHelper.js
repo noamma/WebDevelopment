@@ -16,17 +16,27 @@ exports.getAllArticles = (_callback)=>{
       _callback(foundArticles);
     }
   });
-}
+};
 
-exports.newArticle = function(_article){
+exports.deleteAllArticles = (_callback)=>{
+  Article.deleteMany({}, (err, result)=>{
+    if(err){
+      console.log(err);
+    }else{
+      _callback(result);
+    }
+  });
+};
+
+exports.addNewArticle = (_articleTitle, _articleContent, _callback)=>{
   let article = new Article(
     {
-      name: _list,
-      content: defaultItems
+      title: _articleTitle,
+      content: _articleContent
     }
   );
   article.save();
-  return article;
+  _callback(article);
 }
 
 exports.removeListItem = function(listName, itemId, _callback){
@@ -67,7 +77,7 @@ const itemsSchema = {
 };
 
 const articleSchema = {
-  name: {
+  title: {
     type: String,
     required: true
   },
