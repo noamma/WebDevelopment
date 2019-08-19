@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const encrypt = require("mongoose-encryption");
+
 const dbcs = require(__dirname + "/dbcs.js");
 const connectionString = dbcs.getConnectionString();
 
@@ -47,7 +49,7 @@ exports.validateCredentials = (_username, _password, _callback)=>{
   });
 };
 
-const userSchema = {
+const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true},
@@ -55,6 +57,8 @@ const userSchema = {
     type: String,
     required: true
   }
-};
+});
+
+userSchema.plugin(encrypt, {secret: dbcs.getCryptoString(), encryptedFields: ['password']});
 
 const User = new mongoose.model("User", userSchema);
