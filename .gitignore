@@ -2,3 +2,4 @@
 .DS_Store/**
 **/dbcs.js
 **/apikey.js
+**/.env
