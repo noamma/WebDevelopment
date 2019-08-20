@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const md5 = require("md5");
 const dbhelper = require(__dirname + "/js/dbhelper.js");
 
 const app = express();
@@ -17,7 +18,7 @@ app.get("/register", (req, res)=>{res.render("register")});
 
 app.post("/register",(req, res)=>{
   let username = req.body.username;
-  let password = req.body.password;
+  let password = md5(req.body.password);
 
   dbhelper.createNewUser(username, password,(result)=>{
     if(result){
@@ -33,7 +34,7 @@ app.get("/login", (req, res)=>{res.render("login")});
 
 app.post("/login", (req, res)=>{
   const _username = req.body.username;
-  const _password = req.body.password;
+  const _password = md5(req.body.password);
 
   console.log("Please waite.. we are checking your credentials");
   dbhelper.validateCredentials(_username, _password, (result)=>{
