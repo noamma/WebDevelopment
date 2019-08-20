@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 //const encrypt = require("mongoose-encryption");
+const bcrypt = require("bcrypt");
 const dbcs = require(__dirname + "/dbcs.js");
 const connectionString = dbcs.getConnectionString();
 
@@ -36,12 +37,14 @@ exports.validateCredentials = (_username, _password, _callback)=>{
       console.log(err);
     }else if (foundUser){
       console.log(foundUser.email);
-      if (foundUser.password === _password){
-        _callback(foundUser);
-      }else{
-        console.log("db message: login rejected due to password missmatch");
-        _callback("reject");
-      }
+      bcrypt.compare(_password, foundUser.password, (err, result)=>{
+        if (result === true){
+          _callback(foundUser);
+        }else{
+          console.log("db message: login rejected due to password missmatch");
+          _callback("reject");
+        }
+      });
     }else{
       _callback(null);
     }
