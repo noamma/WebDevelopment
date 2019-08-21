@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 //const encrypt = require("mongoose-encryption");
 const bcrypt = require("bcrypt");
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
 const dbcs = require(__dirname + "/dbcs.js");
 const connectionString = dbcs.getConnectionString();
 
@@ -51,16 +53,41 @@ exports.validateCredentials = (_username, _password, _callback)=>{
   });
 };
 
+exports.registerUser = (_username, _password, _callback)=>{
+  _connect();
+  User.register({username: _username}, _password, (err, user)=>{
+    if(err){
+      console.log("User.register produced an error: " + err);
+      _callback(err,null);
+    }else{
+      _callback(null,user);
+    }
+  });
+};
+
+exports.getLoginUser = (_username, _password)=>{
+  let user = new User({username: _username, password: _password});
+  console.log(user);
+  return user;
+};
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
-    required: true},
+    //required: true},
+  },
   password: {
     type: String,
-    required: true
+    //required: true
   }
 });
 
 //userSchema.plugin(encrypt, {secret: dbcs.getCryptoString(), encryptedFields: ['password']});
+userSchema.plugin(passportLocalMongoose);
 
 const User = new mongoose.model("User", userSchema);
+
+passport.use(User.createStrategy());
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
