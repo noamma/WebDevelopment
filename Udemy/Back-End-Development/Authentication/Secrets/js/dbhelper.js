@@ -65,10 +65,19 @@ exports.registerUser = (_username, _password, _callback)=>{
   });
 };
 
-exports.getLoginUser = (_username, _password)=>{
+exports.loginUser = (_username, _password, req, res,_callback)=>{
   let user = new User({username: _username, password: _password});
-  console.log(user);
-  return user;
+  _connect();
+  req.login(user, (err)=>{
+    if (err){
+      console.log("Req.login returned with an error: " + err);
+    }else{
+      passport.authenticate("local")(req, res, ()=>{
+          //console.log("authentication triggerd");
+          _callback(null, user);
+      });
+    }
+  });
 };
 
 const userSchema = new mongoose.Schema({
@@ -81,6 +90,20 @@ const userSchema = new mongoose.Schema({
     //required: true
   }
 });
+
+// , (err, user, info)=>{
+//   if(err){
+//     console.log(err);
+//     return err;
+//   }else{
+//     if(!user){
+//       console.log(info.message);
+//       return info.message;
+//     }
+//     console.log("authentication user: " + user);
+//     _callback(null, user);
+//   }
+// }
 
 //userSchema.plugin(encrypt, {secret: dbcs.getCryptoString(), encryptedFields: ['password']});
 userSchema.plugin(passportLocalMongoose);

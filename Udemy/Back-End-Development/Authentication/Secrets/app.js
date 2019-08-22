@@ -74,17 +74,13 @@ dbhelper.registerUser(username, password,(err, result)=>{
 app.get("/login", (req, res)=>{res.render("login")});
 
 app.post("/login", (req, res)=>{
-  const _username = req.body.username;
-  const _password = req.body.password;
   console.log("Please waite.. we are checking your credentials");
-  req.login(dbhelper.getLoginUser(_username, _password), (err)=>{
-    if (err){
-      console.log(err);
+  dbhelper.loginUser(req.body.username, req.body.password, req, res,(err, user)=>{
+    if(err){
+      console.log("login failed: " + err);
+      res.redirect("/login");
     }else{
-      passport.authenticate("local")(req, res, ()=>{
-        res.redirect("/secrets");
-
-      });
+      res.redirect("/secrets");
     }
   });
   });
