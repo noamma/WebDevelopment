@@ -7,13 +7,25 @@ body{margin:0;padding: 0;}
 }
 
 .top{
-  background: linear-gradient(45deg, orange, red, yellow);
+  background: linear-gradient(45deg, blue, white, lightblue);
   width: 100%;
   text-align: right;
-  padding-top: 50px;
+  flex-basis: 40px;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+.middle {
+  text-align: center;
+  flex-basis: 200px;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, orange,red, yellow);
 }
 
 .bottom{
   text-align: center;
-  background: linear-gradient(45deg, blue, lightblue, white);
+  background: linear-gradient(45deg, green, white, lightgreen);
 }
