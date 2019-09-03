@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let fact = function(a){
+        if (a === 0){
+            return 1;
+        }else{
+          return a * arguments.callee(a-1);  
+        }
+
+      };
+      document.write(fact(4));
+    </script>
+  </body>
+</html>
