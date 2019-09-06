@@ -1,7 +1,7 @@
 /******************************TAGS SELECTORS*******************/
 body {
   margin: 0;
-  background-color: #3e64ff;
+  background-color: #5edfff;
   font-family: 'Merriweather', serif;
   text-align: center;
 }
@@ -54,11 +54,13 @@ h3 {
 .credentials-img {
   float: right;
   border-radius: 3%;
-  width: 25%;
-  margin: 20px;
+  width: 15%;
+  margin: 10px;
 }
 
 #hobbies-carousel {
   background-color: #b2fcff;
   margin-top: 40px;
+  border-radius: 25%;
+  width:60%;
 }
