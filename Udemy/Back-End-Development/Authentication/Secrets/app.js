@@ -1,8 +1,8 @@
+//jshint esversion:6
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-//const md5 = require("md5");
-//const bcrypt = require("bcrypt");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
@@ -36,31 +36,36 @@ app.get("/register", (req, res) => {
 });
 
 app.get("/secrets", (req, res) => {
+  dbhelper.getSecrets((err, usersWithSecrets)=>{
+    if(err){
+      console.log("db returned with error: "+err);
+    }else if (usersWithSecrets){
+      res.render("secrets", {usersWithSecrets});
+    }
+  });
+});
+
+app.route("/submit").get((req, res)=>{
   if (req.isAuthenticated()) {
-    res.render("secrets");
+    res.render("submit");
   } else {
     res.redirect("/login");
   }
+}).post((req, res)=>{
+  dbhelper.postSecret(req, (err, secret)=>{
+    if(err){
+      console.log(err);
+    }else{
+      console.log("Successfuly submitted your secret: " + secret);
+      res.redirect("/secrets");
+    }
+  });
 });
 
 app.post("/register", (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
-  //  let password = md5(req.body.password);
-  // bcrypt.hash(req.body.password, saltRounds, (err, hash)=>{
-  //   if(err){
-  //     console.log(err);
-  //   }else{
-  //     dbhelper.createNewUser(username, hash,(result)=>{
-  //       if(result){
-  //         console.log("Successfuly registerd new user");
-  //         console.log("User Name: " + result.email);
-  //         console.log("Password: *******");
-  //         res.redirect("/secrets");
-  //       }
-  //     });
-  //   }
-  // });
+
   console.log("User name: " + username);
   console.log("Password: " + password.length);
   dbhelper.registerUser(username, password, (err, result) => {
@@ -75,21 +80,27 @@ app.post("/register", (req, res) => {
   });
 });
 
-app.get("/login", (req, res) => {
-  res.render("login")
-});
-
-app.post("/login", (req, res) => {
+app.route("/login").get((req, res) => {
+  res.render("login");
+}).post((req, res) => {
   console.log("Please waite.. we are checking your credentials");
-  dbhelper.loginUser(req.body.username, req.body.password, req, res, (err, user) => {
+  dbhelper.loginUser(req, res, (err, user)=>{
     if (err) {
       console.log("login failed: " + err);
       res.redirect("/login");
     } else {
-      res.redirect("/secrets");
+      passport.authenticate("local")(req, res, ()=>{res.redirect("/secrets");});
     }
   });
 });
+
+app.listen(80, () => {
+  console.log("Server started at port 80.");
+});
+
+
+//const md5 = require("md5");
+//const bcrypt = require("bcrypt");
 //const _password = md5(req.body.password);
 // dbhelper.validateCredentials(_username, req.body.password, (result)=>{
 //   if(result){
@@ -103,6 +114,18 @@ app.post("/login", (req, res) => {
 //   }
 // });
 
-app.listen(3000, () => {
-  console.log("Server started at port 3000.");
-});
+//  let password = md5(req.body.password);
+// bcrypt.hash(req.body.password, saltRounds, (err, hash)=>{
+//   if(err){
+//     console.log(err);
+//   }else{
+//     dbhelper.createNewUser(username, hash,(result)=>{
+//       if(result){
+//         console.log("Successfuly registerd new user");
+//         console.log("User Name: " + result.email);
+//         console.log("Password: *******");
+//         res.redirect("/secrets");
+//       }
+//     });
+//   }
+// });
