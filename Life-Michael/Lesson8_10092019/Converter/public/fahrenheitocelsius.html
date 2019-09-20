@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Fahrenheit To Celsius</title>
+  </head>
+  <body>
+    <form class="" name="calcForm">
+      <label for="fahren">Fahrenheit</label>
+      <input type="text" name="fahren" >
+      <label for="celsius">Celsius</label>
+      <input type="text" name="celsius" >
+      <input type="button" onclick="calc()" value="Calc">
+    </form>
+    <script>
+      var calc = ()=>{
+      var fahren = 0;
+      var celsius = 0;
+      if(document.calcForm.fahren.value.length>0 && document.calcForm.celsius.value.length=="0"){
+        fahren = parseInt(document.calcForm.fahren.value);
+        document.calcForm.celsius.value = ((fahren-32)*(5/9));
+      }else if (document.calcForm.celsius.value.length>0 && document.calcForm.fahren.value.length=="0"){
+        celsius = parseInt(document.calcForm.celsius.value);
+        document.calcForm.fahren.value = ((celsius*(9/5))+32);
+      }
+      };
+    </script>
+  </body>
+</html>

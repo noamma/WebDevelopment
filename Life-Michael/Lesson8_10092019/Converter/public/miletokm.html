@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Miles To Kilometers</title>
+  </head>
+  <body>
+    <form class="" name="calcForm">
+      <label for="mile">Miles</label>
+      <input type="text" name="mile" >
+      <label for="km">Kilometers</label>
+      <input type="text" name="km" >
+      <input type="button" onclick="calc()" value="Calc">
+    </form>
+    <script>
+      var calc = ()=>{
+      var mile = 0;
+      var km = 0;
+      if(document.calcForm.mile.value.length>0 && document.calcForm.km.value.length=="0"){
+        mile = parseInt(document.calcForm.mile.value);
+        document.calcForm.km.value = mile * 1.609344;
+      }else if (document.calcForm.km.value.length>0 && document.calcForm.mile.value.length=="0"){
+        km = parseInt(document.calcForm.km.value);
+        document.calcForm.mile.value = km / 1.609344;
+      }
+      };
+    </script>
+  </body>
+</html>

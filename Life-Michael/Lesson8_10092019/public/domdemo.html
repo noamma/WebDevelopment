@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>DOM Demo</title>
+  </head>
+  <body>
+    <h1>Welcome to my server</h1>
+    <script>
+      var xhr=new window.XMLHttpRequest();
+
+      xhr.open(
+      "GET",
+      "data.xml",
+      false);
+      xhr.send("");
+      var ob = xhr.responseXML.documentElement;
+      var childs = ob.childNodes;
+      var child =ob.firstChild;
+      for(i=0; i<childs.length;i++){
+        if (child.nodeType==1){
+          document.write(child.firstChildnextSibling.firstChild.nodeValue+"<br />");
+        }
+        child = child.nextSibling;
+      }
+    </script>
+  </body>
+</html>

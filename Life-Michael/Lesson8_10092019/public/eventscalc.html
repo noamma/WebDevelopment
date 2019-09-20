@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Events Calculator</title>
+  </head>
+  <body>
+    <form name="myform">
+<br>first number <input type="text" name="num_first"/>
+<br>second number <input type="text" name="num_second"/>
+<br><input type="button" value="+" onClick="calc(this.value)"/>
+    <input type="button" value="-" onClick="calc(this.value)">
+    <input type="button" value="/" onClick="calc(this.value)">
+    <input type="button" value="*" onClick="calc(this.value)">
+<br><input type="text" name="result"/>
+</form>
+    <script>
+      var calc = (str)=>{
+        str = document.myform.num_first.value +
+              str +
+              document.myform.num_second.value;
+       document.myform.result.value = eval(str);
+      }
+
+    </script>
+  </body>
+</html>

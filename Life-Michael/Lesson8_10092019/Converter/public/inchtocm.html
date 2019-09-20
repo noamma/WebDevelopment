@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Inches To Centimeters</title>
+  </head>
+  <body>
+    <form class="" name="calcForm">
+      <label for="inch">Inches</label>
+      <input type="text" name="inch" >
+      <label for="cm">Centimeters</label>
+      <input type="text" name="cm" >
+      <input type="button" onclick="calc()" value="Calc">
+    </form>
+    <script>
+      var calc = ()=>{
+      var inch = 0;
+      var cm = 0;
+      if(document.calcForm.inch.value.length>0 && document.calcForm.cm.value.length=="0"){
+        inch = parseInt(document.calcForm.inch.value);
+        document.calcForm.cm.value = inch * 2.54;
+      }else if (document.calcForm.cm.value.length>0 && document.calcForm.inch.value.length=="0"){
+        cm = parseInt(document.calcForm.cm.value);
+        document.calcForm.inch.value = cm / 2.54;
+      }
+      };
+    </script>
+  </body>
+</html>

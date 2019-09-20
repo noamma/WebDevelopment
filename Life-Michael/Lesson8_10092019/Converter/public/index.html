@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family==Merriweather:300i,400|Montserrat:900|Sacramento&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script>
+    if (screen.width<400){
+      //alert("loading mobile version (jqueryMobile)");
+      $("head").append("<script src=\"http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js\"><\/script>");
+
+    }
+  </script>
+  <title>Converter Master</title>
+</head>
+
+<body>
+
+  <div data-role="navbar">
+  <nav class="fcontainer fnav">
+      <a class="navbrand ui-btn ui-icon-home ui-btn-icon-top" href="index.html">ConveterMaster</a>
+      <ul class= "nav-ul">
+        <li class= "navitem">
+          <a class = "navlink" href="miletokm.html">Miles to Kilometers</a>
+        </li>
+        <li class= "navitem">
+          <a class = "navlink" href="inchtocm.html">Inches to Centimeters</a>
+        </li>
+        <li class= "navitem">
+          <a class = "navlink" href="fahrenheitocelsius.html">fahrenheit to Celsius</a>
+        </li>
+      </ul>
+  </nav>
+  </div>
+  <h1>Welcome to converter master ! easly convert most common mesures in a click of a button</h1>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<library>
+<book>
+<name>Java Tutorial</name>
+<pages>24</pages>
+<author>James Douglas</author>
+</book>
+<book>
+<name>PHP Certification Guide</name>
+<pages>22</pages>
+<author>Mike Brant</author>
+</book>
+<book>
+<name>XML Fundamentals</name>
+<pages>20</pages>
+<author>Dave Ron</author>
+</book>
+<book>
+<name>XHTML Guide</name>
+<pages>27</pages>
+<author>Michael Shoolman</author>
+</book>
+</library>
