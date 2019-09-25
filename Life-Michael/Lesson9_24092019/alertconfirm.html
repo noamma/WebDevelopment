@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Plesse select alert or confirm</h1><br>
+    <button type="button" onclick="handleClick(this.name)" name="alertbtn">Alert</button>
+    <button type="button" onclick="handleClick(this.name)" name="confimbtn">Confirm</button>
+    <script>
+      handleClick = (name)=>{
+        if(name === "alertbtn"){
+          alert("Hey i\'m an alert message");
+        }else{
+          confirm("Hey i\'m a confirmation dialog");
+        }
+      }
+    </script>
+  </body>
+</html>

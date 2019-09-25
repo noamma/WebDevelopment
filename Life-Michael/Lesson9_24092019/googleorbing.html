@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Plesse select Google or Bing</h1><br>
+    <button type="button" onclick="handleClick(this.name)" name="googlebtn">Google</button>
+    <button type="button" onclick="handleClick(this.name)" name="bingbtn">Bing</button>
+    <script>
+      handleClick = (name)=>{
+        if(name === "googlebtn"){
+          location.replace("https://google.co.il");
+        }else{
+          location.replace("https://google.co.il");
+        }
+      }
+    </script>
+  </body>
+</html>

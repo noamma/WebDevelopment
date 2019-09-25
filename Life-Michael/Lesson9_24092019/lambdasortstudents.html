@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Input Array</h1>
+    <script>
+      var students = [
+      {name: "George",average: 80},
+      {name: "George",average: 70},
+      {name: "George",average: 85},
+      {name: "George",average: 75},
+      {name: "George",average: 90},
+      {name: "George",average: 100}
+      ];
+      students.forEach(student=>{for(prop in student){document.write(prop + ": " + student[prop] + " ")}});
+      document.write("<br /><h1>Sorted array</h1>");
+      students.sort((a,b)=>a.average - b.average).forEach(student=>{for(prop in student){document.write(prop + ": " + student[prop] + " ")}});
+    </script>
+  </body>
+</html>
