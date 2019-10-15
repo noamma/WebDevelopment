@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title></title>
   </head>
   <body>
     <script>
-      var randArray = [];
-      for (var i= 0;i<6;i++){
-        randArray[i] = Math.floor((Math.random()*44)+1);
+      if (localStorage.length > 0) {
+        const numbers = new Set();
+        const randSize = parseInt(localStorage.getItem("numbersquantity"));
+        const rangeFrom = parseInt(localStorage.getItem("numbersrangefrom"));
+        const rangeTo = parseInt(localStorage.getItem("numbersrangeto"));
+
+        console.log("raffeling " + randSize + " numbers");
+        console.log("starting rand range at " + rangeFrom);
+        console.log("ending rand range at " + rangeTo);
+        while (numbers.size < randSize) {
+          const num =
+            Math.floor(Math.random() * (rangeTo - rangeFrom + 1)) + rangeFrom;
+          numbers.add(num);
+        }
+        const numbersArr = [...numbers];
+        document.write(numbersArr.join(" "));
+      } else {
+        location.replace("/settings");
       }
-      document.write(randArray.join("<br>"));
     </script>
   </body>
 </html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings</title>
+  </head>
+  <h1>Set how many numbers to randomize and at what range</h1>
+  <body>
+    <form name="settingFrm">
+      <label for="numbersquantity">Amount</label>
+      <input
+        type="number"
+        name="numbersquantity"
+        required
+        autofocus
+        autocomplete="no"
+      />
+      <label for="numbersrangefrom">From</label>
+      <input type="number" name="numbersrangefrom" required />
+      <label for="numbersrangeto">To</label>
+      <input type="number" name="numbersrangeto" required />
+      <input type="button" value="Set" onclick="setUserSettings()" />
+    </form>
+    <script>
+      const form = document.forms["settingFrm"];
+      //console.log(form);
+      const setUserSettings = () => {
+        localStorage.setItem("numbersquantity", form.numbersquantity.value);
+        localStorage.setItem("numbersrangefrom", form.numbersrangefrom.value);
+        localStorage.setItem("numbersrangeto", form.numbersrangeto.value);
+        form.reset();
+        location.replace("/");
+      };
+    </script>
+  </body>
+</html>
